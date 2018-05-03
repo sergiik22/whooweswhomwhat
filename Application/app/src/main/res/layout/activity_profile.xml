@@ -3,4 +3,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginBottom="10px"
+        android:layout_marginLeft="30px">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:minHeight="160px"
+            android:maxHeight="160px"
+            android:minWidth="160px"
+            android:maxWidth="160px"
+            android:padding="5px"
+            android:background="#000000"
+            android:foregroundGravity="right"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aktuelle Gruppen:"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="300px"
+                android:id="@+id/personal_groups"
+                android:orientation="vertical"></LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Eigene Ausgaben:"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="300px"
+                android:id="@+id/personal_bills"
+                android:orientation="vertical"></LinearLayout>
+            <Button
+                android:layout_width="400px"
+                android:layout_height="wrap_content"
+                android:text="Neuer Eintrag"
+                android:layout_gravity="right"/>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
 </android.support.constraint.ConstraintLayout>

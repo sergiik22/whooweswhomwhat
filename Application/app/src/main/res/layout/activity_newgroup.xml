@@ -2,5 +2,84 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="30px">
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name der Gruppe:"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:layout_centerVertical="true"/>
+            <EditText
+                android:focusedByDefault="true"
+                android:layout_width="wrap_content"
+                android:minWidth="200px"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="350px"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mitglieder:"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/group_added_members"
+                ></LinearLayout>
+            <RelativeLayout
+                android:layout_width="400px"
+                android:layout_height="wrap_content">
+                <EditText
+                android:focusedByDefault="true"
+                android:layout_width="wrap_content"
+                android:minWidth="330px"
+                android:maxWidth="330px"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:gravity="left"/>
+                <Button
+
+                    android:layout_width="75px"
+                    android:layout_height="75px"
+                    android:text="+"
+                    android:layout_alignParentEnd="true"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_marginTop="20px"
+            android:layout_width="wrap_content"
+            android:minWidth="250px"
+            android:layout_height="wrap_content"
+            android:text="Erstellen"
+            android:layout_gravity="center"/>
+
+
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
