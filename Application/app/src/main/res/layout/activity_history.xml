@@ -16,9 +16,10 @@
             android:layout_height="wrap_content"
             android:text="Zahlungshistorie:" />
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/alle_zahlungen"
+            android:minHeight="200px"
+            android:id="@+id/all_bills"
             android:orientation="vertical">
         </LinearLayout>
     </LinearLayout>

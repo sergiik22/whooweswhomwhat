@@ -31,7 +31,8 @@
                 android:minWidth="200px"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"/>
+                android:layout_alignParentTop="true"
+                android:id="@+id/new_member_name"/>
         </RelativeLayout>
         <Button
             android:layout_marginTop="20px"
@@ -39,9 +40,8 @@
             android:minWidth="250px"
             android:layout_height="wrap_content"
             android:text="Hinzufügen"
+            android:id="@+id/add_button"
             android:layout_gravity="center"/>
-
-
 
     </LinearLayout>
 

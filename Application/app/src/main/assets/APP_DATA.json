@@ -1,0 +1,24 @@
+[
+  {
+    "name": "WG",
+    "members":
+    [
+      {"name":"Ben"},
+      {"name":"Georg"}
+    ],
+    "bills":
+    [
+      {
+        "description" : "Payment",
+        "amount":30.5,
+        "from": "Ben",
+        "to":
+        [
+          {"name":"Georg"}
+        ],
+        "infinite":"true",
+        "date": "04/04/2014"
+      }
+    ]
+  }
+]

@@ -25,7 +25,9 @@
             android:minWidth="200px"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:id="@+id/bill_description"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -44,7 +46,9 @@
             android:minWidth="200px"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:id="@+id/bill_amount"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -63,7 +67,9 @@
             android:minWidth="200px"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:id="@+id/member_spinner"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -83,7 +89,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="+"/>
+            android:text="+"
+            android:id="@+id/add_bill_picture"
+            />
     </RelativeLayout>
 
 
@@ -94,6 +102,7 @@
         android:minWidth="250px"
         android:layout_height="wrap_content"
         android:text="Erstellen"
+        android:id="@+id/create_bill"
         android:layout_gravity="center"/>
 
 </LinearLayout>
