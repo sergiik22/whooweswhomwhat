@@ -34,6 +34,48 @@ public class Data extends Application{
         return instance;
     }
 
+    public Gruppe getGroup(String name){
+        if(gruppen == null)return null;
+        for(Gruppe g:gruppen){
+            if(g.getName().equals("name")) return g;
+        }
+        return null;
+    }
+
+    public ArrayList<Zahlung> getPersonBills(String name){
+        if(gruppen == null)return null;
+        ArrayList<Zahlung> pBills = new ArrayList<Zahlung>();
+        for(Gruppe g:gruppen){
+            for (Zahlung z: g.getBills()){
+                if(z.getPayer().equals(name))
+                    pBills.add(z);
+            }
+        }
+        return pBills;
+    }
+
+    public boolean addMemberToGroup(String gName, String mName){
+        if(gruppen == null)return false;
+        for(Gruppe g:gruppen){
+            if(g.getName().equals("name")){
+                g.addMember(mName);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean addPaymentToGroup(String gName, Zahlung bill){
+        if(gruppen == null)return false;
+        for(Gruppe g:gruppen){
+            if(g.getName().equals("name")){
+                g.addBill(bill);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public void readFile(Activity caller){
         if(gruppen == null) gruppen = new ArrayList<Gruppe>();
         try {
