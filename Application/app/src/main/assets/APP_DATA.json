@@ -1,5 +1,27 @@
 [
   {
+    "name":"Profile",
+    "members":
+    [
+      {"name": "ben"}
+    ],
+    "bills":
+    [
+      {
+        "description":"rent",
+        "amount":300,
+        "infinite":true,
+        "loopTime":"MONTH",
+		"from":"Ben",
+		"to":
+		[
+			{"name":"Ben"}
+		],
+        "payedOn":"05/05/2018"
+      }
+    ]
+  },
+  {
     "name": "WG",
     "members":
     [
@@ -17,7 +39,8 @@
           {"name":"Georg"}
         ],
         "infinite":"true",
-        "date": "04/04/2014"
+        "loopTime":"WEEK",
+        "payedOn": "04/04/2014"
       }
     ]
   }
