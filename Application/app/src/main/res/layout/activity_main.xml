@@ -4,64 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hci.univie.ac.at.myapplication.MainActivity">
+    tools:context="hci.univie.ac.at.myapplication.MainActivity"
+    tools:layout_editor_absoluteY="81dp">
+
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30px"
-        android:layout_marginRight="30px"
         android:layout_marginBottom="10px"
-        android:layout_marginLeft="30px">
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/profile_picture"
+            android:layout_width= "100dip"
+            android:layout_height="100dip"
             android:layout_alignParentRight="true"
-            android:minHeight="160px"
-            android:maxHeight="160px"
-            android:minWidth="160px"
-            android:maxWidth="160px"
-            android:padding="5px"
+            android:src="@drawable/im1"
             android:background="#000000"
             android:foregroundGravity="right"
-            android:id="@+id/profile_picture"
-            />
+            android:maxHeight="160dp"
+            android:maxWidth="160px"
+            android:minHeight="160px"
+            android:minWidth="160px"
+            android:padding="5px" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mein Profil"/>
+                android:layout_height="35dip"
+                android:text="Mein Profil"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="300px"
                 android:id="@+id/buget_calculation"
-                android:orientation="vertical"></LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Meine Gruppen"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="350dip"
+                android:layout_height="150dip"
                 android:minHeight="300px"
-                android:id="@+id/my_groups"
                 android:orientation="vertical"></LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dip"
+                android:text="Meine Gruppen"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/my_groups"
+                android:layout_width="match_parent"
+                android:layout_height="302dp"
+                android:minHeight="300px"
+                android:orientation="vertical">
+
+
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
 
     </RelativeLayout>
-
-
-
 
 
 </android.support.constraint.ConstraintLayout>

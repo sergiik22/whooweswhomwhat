@@ -27,7 +27,7 @@ public class Data extends Application{
     private static Data instance = null;
     private ArrayList<Gruppe> gruppen = null;
 
-    private Data(){}
+    public Data(){}
 
     public static Data getInstance(){
         if(instance==null) return new Data();
@@ -37,7 +37,7 @@ public class Data extends Application{
     public Gruppe getGroup(String name){
         if(gruppen == null)return null;
         for(Gruppe g:gruppen){
-            if(g.getName().equals("name")) return g;
+            if(g.getName().equals(name)) { return g;}
         }
         return null;
     }
@@ -52,6 +52,10 @@ public class Data extends Application{
             }
         }
         return pBills;
+    }
+
+    public  ArrayList<Gruppe> getGruppeArray(){
+        return gruppen;
     }
 
     public boolean addMemberToGroup(String gName, String mName){

@@ -11,6 +11,7 @@ public class Gruppe {
     private ArrayList<String> teilnehmerNamen;
     private ArrayList<Zahlung> teilnehmerZahlungen;
 
+
     public Gruppe(){
         teilnehmerNamen = new ArrayList<String>();
         teilnehmerZahlungen = new ArrayList<Zahlung>();
