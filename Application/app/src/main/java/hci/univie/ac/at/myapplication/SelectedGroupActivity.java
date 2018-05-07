@@ -175,7 +175,7 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
                     TableLayout.LayoutParams.WRAP_CONTENT));
             bills.setColumnStretchable(0, true);
             bills.setColumnStretchable(1, true);
-            bills.setColumnStretchable(2, true);
+            bills.setColumnStretchable(2, true); 
 
         }
 
