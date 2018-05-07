@@ -5,20 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" android:orientation="vertical">
 
-
+   <!-- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/members"
             android:layout_width="match_parent"
-            android:layout_height="250dip"
-            android:layout_margin="10px"
-            android:minHeight="400px"
-            android:orientation="vertical">
+            android:layout_height="240dip"
+            android:orientation="vertical"
+            android:background="@drawable/layout_border"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -26,15 +30,15 @@
                 android:text="Mitglieder:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_margin="5dp"/>
 
-            <TableLayout
+        <TableLayout
                 android:id="@+id/tblmembers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
                 android:layout_weight="1"
-                android:clickable="false"
                 android:orientation="vertical">
 
 
@@ -46,15 +50,21 @@
                 android:layout_width="150dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
-                android:background="@drawable/button_border"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_color"
                 android:padding="10sp"
-                android:text="Neues Mitglied" />
+                android:text="Neues Mitglied"
+                android:textColor="@android:color/white"
+                android:clickable="true"
+                 />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/layout_border"
+            android:layout_marginTop="2dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -62,7 +72,8 @@
                 android:text="Zahlungshistorie:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_margin="5dp"/>
 
             <TableLayout
                 android:id="@+id/bill_history"
@@ -77,12 +88,16 @@
                 android:layout_width="150dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
-                android:background="@drawable/button_border"
-                android:text="Neuer Eintrag" />
+                android:layout_margin="5dp"
+
+                android:text="Neuer Eintrag"
+                android:background="@drawable/button_color"
+                android:textColor="@android:color/white"
+                />
         </LinearLayout>
 
 
     </LinearLayout>
 
-
+    <!--</ScrollView>-->
 </android.support.constraint.ConstraintLayout>

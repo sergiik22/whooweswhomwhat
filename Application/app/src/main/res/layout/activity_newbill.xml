@@ -7,21 +7,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="top"
     android:layout_margin="30px">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beschreibung:"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_centerVertical="true"/>
+            android:text="Beschreibung:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
         <EditText
             android:focusedByDefault="true"
-            android:layout_width="wrap_content"
+            android:layout_width="200dip"
             android:minWidth="200px"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -33,17 +39,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Betrag:"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_centerVertical="true"/>
+            android:text="Betrag:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="30px"
+            android:textStyle="bold" />
         <EditText
             android:focusedByDefault="true"
-            android:layout_width="wrap_content"
-            android:minWidth="200px"
+            android:layout_width="200dip"
+            android:minWidth="200dip"
+            android:inputType="numberDecimal"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
@@ -54,56 +66,72 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="gezahlt von:"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:layout_centerVertical="true"/>
+            android:text="gezahlt von:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="50px"
+            android:textStyle="bold" />
+
         <Spinner
-            android:focusedByDefault="true"
-            android:layout_width="wrap_content"
-            android:minWidth="200px"
+            android:id="@+id/member_spinner"
+            android:layout_width="200dip"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:id="@+id/member_spinner"
-            />
+            android:focusedByDefault="true"
+            android:layout_marginTop="40px"
+            android:minWidth="200px" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="152dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beleg (Foto):"
-            android:layout_alignParentLeft="true"
+            android:layout_alignBaseline="@+id/add_bill_picture"
+            android:layout_alignBottom="@+id/add_bill_picture"
+            android:layout_alignParentStart="true"
             android:gravity="center"
-            android:layout_centerVertical="true"/>
-            <Button
-            android:focusedByDefault="true"
-            android:layout_width="wrap_content"
-            android:minWidth="200px"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="+"
+            android:text="Beleg (Foto):"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/add_bill_picture"
-            />
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_color"
+            android:focusedByDefault="true"
+            android:minWidth="200px"
+            android:text="+"
+            android:textColor="@android:color/white" />
     </RelativeLayout>
 
 
-
     <Button
-        android:layout_marginTop="20px"
-        android:layout_width="wrap_content"
-        android:minWidth="250px"
-        android:layout_height="wrap_content"
-        android:text="Erstellen"
         android:id="@+id/create_bill"
-        android:layout_gravity="center"/>
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_color"
+        android:minWidth="250px"
+        android:text="Erstellen"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
 

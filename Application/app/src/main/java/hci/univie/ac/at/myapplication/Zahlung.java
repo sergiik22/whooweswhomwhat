@@ -23,6 +23,13 @@ public class Zahlung {
         gezahltAn = new ArrayList<String>();
     }
 
+    public Zahlung (String b, double p, String gv, Date date){
+        beschreibung = b;
+        preis = p;
+        gezahltVon = gv;
+        datum = date;
+    }
+
     public void setDescription(String newDescription){
         beschreibung = newDescription;
     }

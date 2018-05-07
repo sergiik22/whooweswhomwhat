@@ -10,23 +10,31 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 
 import java.io.File;
 import java.util.ArrayList;
 
+import static android.widget.Button.*;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
     //Static variables to use in all Activities
 
-    public static Data mainData = new Data();
+    public static Data mainData = new Data();;
     public static Gruppe mainGruppe;// = new Gruppe();
+    Button btn_group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Startseite");
+
         LinearLayout myLayout = (LinearLayout) findViewById(R.id.my_groups);
         mainData.readFile(this);
+        btn_group = (Button)findViewById(R.id.new_group_button);
+
+
 
         //Making new Buttons for each Group
         for (int i = 0; i < mainData.getGruppeArray().size(); ++i){
@@ -35,28 +43,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
+            myParams.setMargins(5, 10, 5, 10);
             btn.setText(mainData.getGruppeArray().get(i).getName());
             btn.setId(i);
             Drawable d = getResources().getDrawable(R.drawable.button_border);
             btn.setBackground(d);
             btn.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
+
             btn.setOnClickListener((View.OnClickListener) this);
             myLayout.addView(btn, myParams);
 
         }
+        btn_group.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v) {
-
+        int tempid = v.getId();
+        if (tempid == R.id.new_group_button){
+            Intent intent = new Intent(this, NewGroupActivity.class);
+            startActivity(intent);
+        }
         //On click start activity SelectedGroupActivity. mainGruppe is now the chosen group
-
-        Intent intent = new Intent(this, SelectedGroupActivity.class);
-        String btnName = ((Button)v).getText().toString();
-        mainGruppe = mainData.getGroup(btnName);
-        Log.i("MainGruppe", mainGruppe.getName());
-
-        startActivity(intent);
+        else {
+            Intent intent = new Intent(this, SelectedGroupActivity.class);
+            String btnName = ((Button) v).getText().toString();
+            mainGruppe = mainData.getGroup(btnName);
+            startActivity(intent);
+        }
     }
 }

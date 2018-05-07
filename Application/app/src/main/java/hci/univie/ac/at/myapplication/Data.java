@@ -58,6 +58,10 @@ public class Data extends Application{
         return gruppen;
     }
 
+    public void addGruppe (Gruppe g){
+        gruppen.add(g);
+    }
+
     public boolean addMemberToGroup(String gName, String mName){
         if(gruppen == null)return false;
         for(Gruppe g:gruppen){

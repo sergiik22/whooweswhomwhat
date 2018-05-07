@@ -10,38 +10,50 @@
         android:layout_margin="30px">
 
         <TextView
+            android:id="@+id/add_member_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/add_member_text"
             android:hint="Neuer Teilnehmer bei XXX hinzufügen:"
-            />
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name:"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:gravity="center"
-                android:layout_centerVertical="true"/>
+                android:text="Name:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <EditText
-                android:focusedByDefault="true"
-                android:layout_width="wrap_content"
-                android:minWidth="200px"
+                android:id="@+id/new_member_name"
+                android:layout_width="200dip"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:id="@+id/new_member_name"/>
+                android:focusedByDefault="true"
+                android:minWidth="200px"
+                android:textColor="@android:color/black" />
         </RelativeLayout>
+
         <Button
-            android:layout_marginTop="20px"
-            android:layout_width="wrap_content"
-            android:minWidth="250px"
-            android:layout_height="wrap_content"
-            android:text="Hinzufügen"
             android:id="@+id/add_button"
-            android:layout_gravity="center"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20px"
+            android:minWidth="250px"
+            android:text="Hinzufügen"
+            android:background="@drawable/button_color"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

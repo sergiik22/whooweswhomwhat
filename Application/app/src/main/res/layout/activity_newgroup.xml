@@ -12,16 +12,20 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name der Gruppe:"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:gravity="center"
-                android:layout_centerVertical="true"/>
+                android:text="Name der Gruppe:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
             <EditText
                 android:focusedByDefault="true"
-                android:layout_width="wrap_content"
+                android:layout_width="200dip"
                 android:minWidth="200px"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -29,61 +33,95 @@
                 android:id="@+id/group_name"
                 />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="337dp"
             android:minHeight="350px"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mitglieder:"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:text="Mitglieder:"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/group_added_members"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/group_added_members"
-                ></LinearLayout>
+                android:orientation="vertical"></LinearLayout>
+
             <RelativeLayout
-                android:layout_width="400px"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content">
+
                 <EditText
-                android:focusedByDefault="true"
-                android:layout_width="wrap_content"
-                android:minWidth="330px"
-                android:maxWidth="330px"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:gravity="left"
-                android:id="@+id/new_member_name"
-                />
+                    android:id="@+id/new_member_name"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:focusedByDefault="true"
+                    android:gravity="left"
+                    android:maxWidth="330px"
+                    android:minWidth="330px" />
+
                 <Button
 
+                    android:id="@+id/add_new_member"
                     android:layout_width="75px"
                     android:layout_height="75px"
-                    android:text="+"
-                    android:id="@+id/add_new_member"
                     android:layout_alignParentEnd="true"
-                    />
+                    android:text="+"
+                    android:background="@drawable/button_color"
+                    android:textColor="@android:color/white"/>
 
             </RelativeLayout>
+
+            <TableLayout
+                android:id="@+id/new_members_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
 
         </LinearLayout>
 
 
-
         <Button
-            android:layout_marginTop="20px"
-            android:layout_width="wrap_content"
-            android:minWidth="250px"
-            android:layout_height="wrap_content"
-            android:text="Erstellen"
             android:id="@+id/create_button"
-            android:layout_gravity="center"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20px"
+            android:background="@drawable/button_color"
+            android:minWidth="250px"
+            android:text="Erstellen"
+            android:textColor="@android:color/white" />
 
 
 

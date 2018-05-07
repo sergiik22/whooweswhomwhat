@@ -11,12 +11,15 @@ public class Gruppe {
     private ArrayList<String> teilnehmerNamen;
     private ArrayList<Zahlung> teilnehmerZahlungen;
 
-
     public Gruppe(){
         teilnehmerNamen = new ArrayList<String>();
         teilnehmerZahlungen = new ArrayList<Zahlung>();
     }
 
+    public Gruppe(String n, ArrayList<String> arr){
+        name = n;
+        teilnehmerNamen = arr;
+    }
     public void setName(String newName){
         name = newName;
     }
