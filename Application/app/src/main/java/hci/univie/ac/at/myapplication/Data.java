@@ -10,7 +10,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,10 +30,10 @@ public class Data extends Application{
     private static Data instance = null;
     private ArrayList<Gruppe> gruppen = null;
 
-    public Data(){}
+    private Data(){}
 
     public static Data getInstance(){
-        if(instance==null) return new Data();
+        if(instance==null) instance =  new Data();
         return instance;
     }
 
@@ -87,7 +90,8 @@ public class Data extends Application{
     public void readFile(Activity caller){
         if(gruppen == null) gruppen = new ArrayList<Gruppe>();
         try {
-            InputStream is = caller.getApplicationContext().getAssets().open(filename);
+            InputStream is = caller.getApplicationContext().openFileInput(filename);
+
             int jsonLength = is.available();
             byte[] buff = new byte[jsonLength];
             is.read(buff);
@@ -143,7 +147,25 @@ public class Data extends Application{
             Log.i("GRUPPE", g.toString());
         }
     }
-    public void writeSaveFile(){
+    public void writeSaveFile(Activity caller){
+        try{
+            OutputStreamWriter myOutput = new OutputStreamWriter(caller.getApplicationContext().openFileOutput(filename,Context.MODE_PRIVATE));
+
+            String wholeData = "[";
+            for (int i = 0; i<gruppen.size(); i++) {
+                if(i!=0)wholeData+=",\n";
+                wholeData+=gruppen.get(i).toString();
+            }
+            wholeData+="]";
+
+
+            myOutput.write(wholeData);
+            myOutput.close();
+
+        }catch (Exception e){
+            Log.e("WRITE_EXCEPTION", "File could not be written");
+        }
+
 
     }
 

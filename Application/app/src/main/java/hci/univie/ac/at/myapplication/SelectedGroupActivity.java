@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -31,6 +32,11 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectedgroup);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         setTitle("Gruppenübersicht");
         Drawable d = getResources().getDrawable(R.drawable.button_border);
 
@@ -180,7 +186,13 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
         }
 
     }
-
+    //Function for Return Arrow
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id==android.R.id.home) this.finish();
+        return super.onOptionsItemSelected(item);
+    }
     /**
      * Called when a view has been clicked.
      *
@@ -193,10 +205,12 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
         switch (tempid){
             case (R.id.add_new_member):
                 Intent intent = new Intent(this, NewMemberActivity.class);
+                finish();
                 startActivity(intent);
                 break;
             case (R.id.add_new_entry):
                 Intent intent1 = new Intent(this, NewBillActivity.class);
+                finish();
                 startActivity(intent1);
                 break;
         }

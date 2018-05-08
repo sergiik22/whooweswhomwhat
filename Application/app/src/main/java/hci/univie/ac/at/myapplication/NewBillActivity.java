@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,6 +33,10 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newbill);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         setTitle("Neue Zahlung");
         et1 = (EditText)findViewById(R.id.bill_description);
         et2 = (EditText)findViewById(R.id.bill_amount);
@@ -52,7 +57,13 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
-
+    //Function for Return Arrow
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id==android.R.id.home) this.finish();
+        return super.onOptionsItemSelected(item);
+    }
     /**
      * Called when a view has been clicked.
      *

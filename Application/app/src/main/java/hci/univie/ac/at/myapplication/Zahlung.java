@@ -1,5 +1,6 @@
 package hci.univie.ac.at.myapplication;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.LoggingPermission;
@@ -8,7 +9,7 @@ import java.util.logging.LoggingPermission;
  * Created by Benne on 04.05.2018.
  */
 
-enum LoopZeit{DAY,WEEK,MONTH,YEAR}
+enum LoopZeit{NONE,DAY,WEEK,MONTH,YEAR}
 
 public class Zahlung {
     private String beschreibung;
@@ -46,7 +47,22 @@ public class Zahlung {
         dauerAuftrag = val;
     }
     public void setInterval(String loop){
-        //toDo
+        switch (loop){
+            case "DAY":
+                loopZeit = LoopZeit.DAY;
+                break;
+            case "WEEK":
+                loopZeit = LoopZeit.WEEK;
+                break;
+            case "MONTH":
+                loopZeit = LoopZeit.MONTH;
+                break;
+            case "YEAR":
+                loopZeit = LoopZeit.YEAR;
+                break;
+            default:
+            loopZeit = LoopZeit.NONE;
+        }
     }
     public void setPaydate(Date date){
         datum = date;
@@ -76,9 +92,22 @@ public class Zahlung {
 
     @Override
     public String toString(){
-        String s="\n{\n"+beschreibung;
-        s+="\nPreis: "+preis;
-        s+="\nDatum:"+datum.toString();
+        String s="{\n\"description\":\""+beschreibung+"\",\n";
+        s+="\"amount\":"+preis+",\n";
+        s+="\"infinite\":"+dauerAuftrag+",\n";
+        s+="\"loopTime\":\""+loopZeit.name()+"\",\n";
+        s+="\"from\":\""+gezahltVon+"\",\n";
+        s+="\"to\":\n[\n";
+        for(int i=0; i<gezahltAn.size(); i++) {
+            if (i != 0) s += ",\n";
+            s += "{\"name\":\"" + gezahltAn.get(i) + "\"}";
+        }
+        s+="],\n";
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String format = formatter.format(datum);
+        s+="\"payedOn\":\""+format+"\"\n";
+        s+="}";
         return s;
     }
 }

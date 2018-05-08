@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,10 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newmember);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         setTitle("Teilnehmer hinzufügen");
 
         tv1 = (TextView)findViewById(R.id.add_member_text);
@@ -35,6 +40,14 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
         et1 = (EditText)findViewById(R.id.new_member_name);
         btn_add.setOnClickListener(this);
 
+    }
+
+    //Function for Return Arrow
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id==android.R.id.home) this.finish();
+        return super.onOptionsItemSelected(item);
     }
 
 

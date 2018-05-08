@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 public class NewGroupActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Data data = null;
     EditText et1;
     EditText et2;
     Button btn_add;
@@ -39,6 +41,11 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if(data == null) data = Data.getInstance();
         setContentView(R.layout.activity_newgroup);
         setTitle("Gruppe erstellen");
         d = getResources().getDrawable(R.drawable.button_border);
@@ -51,6 +58,14 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
 
         btn_add.setOnClickListener(this);
         btn_create.setOnClickListener(this);
+    }
+
+    //Function for Return Arrow
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if(id==android.R.id.home) this.finish();
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -117,10 +132,11 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
             } else {
                 //Mistake, probably to use on resume in ActivityMain
 
-                /*Gruppe grnew = new Gruppe(getname1, names);
-                MainActivity.mainData.addGruppe(grnew);
+                Gruppe grnew = new Gruppe(getname1, names);
+                data.addGruppe(grnew);
                 Intent intent1 = new Intent(this, MainActivity.class);
-                startActivity(intent1);*/
+                finish();
+                startActivity(intent1);
             }
         }
     }

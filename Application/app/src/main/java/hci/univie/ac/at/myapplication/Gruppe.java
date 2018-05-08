@@ -50,16 +50,22 @@ public class Gruppe {
 
     @Override
     public String toString(){
-        String s="\n{\n"+name;
-        s+="\nMembers:\n[\n";
-        for(String name:teilnehmerNamen){
-            s+="\t"+name+";\n";
+        String s="{\"name\":\""+name+"\",";
+
+
+        s+="\n\"members\":\n[\n";
+        for(int i =0; i<teilnehmerNamen.size(); i++){
+            if(i!=0)s+=",\n";
+            s+="{\"name\":\""+teilnehmerNamen.get(i)+"\"}";
         }
-        s+="]\nBills:\n[";
-        for (Zahlung z : teilnehmerZahlungen){
-            s+="\t"+z.toString()+";\n";
+        s+="\n],";
+
+        s+="\"bills\":\n[\n";
+        for (int i =0; i<teilnehmerZahlungen.size(); i++){
+            if(i!=0)s+=",\n";
+            s+=teilnehmerZahlungen.get(i).toString();
         }
-        s+="]\n}";
+        s+="\n]\n}";
         return s;
     }
 

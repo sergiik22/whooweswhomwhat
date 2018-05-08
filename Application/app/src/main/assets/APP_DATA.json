@@ -38,7 +38,7 @@
         [
           {"name":"Georg"}
         ],
-        "infinite":"true",
+        "infinite":true,
         "loopTime":"WEEK",
         "payedOn": "04/04/2014"
       }
