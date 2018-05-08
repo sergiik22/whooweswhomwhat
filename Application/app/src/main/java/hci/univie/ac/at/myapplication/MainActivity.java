@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, SelectedGroupActivity.class);
             String btnName = ((Button) v).getText().toString();
             mainGruppe = mainData.getGroup(btnName);
+
             startActivity(intent);
         }
     }

@@ -33,6 +33,12 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectedgroup);
 
+        TableLayout myLayout = (TableLayout) findViewById(R.id.tblmembers);
+        myLayout.removeAllViews();
+
+        TableLayout myLayout1 = (TableLayout) findViewById(R.id.bill_history);
+        myLayout1.removeAllViews();
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -138,6 +144,7 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
             tableMembers.setColumnStretchable(1, true);
         }
             //Adding bills
+        Log.i("chevk" , "Check");
         for (int i = 0; i < MainActivity.mainGruppe.getBills().size(); ++i){
             tmrow1 = new TableRow(this);
             tv3 = new TextView(this);
