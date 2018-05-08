@@ -60,7 +60,7 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
 
         lp.setMargins(5, 5, 5, 5);
 
-        //First Rows to the table Bills
+        //First Row to the table Bills
         tmrow1 = new TableRow(this);
         tv3 = new TextView(this);
         tv4 = new TextView(this);
@@ -136,10 +136,12 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
             tmrow.addView(tv1);
             tmrow.addView(tv2);
 
+
             tv1.setLayoutParams(lp);
             tv2.setLayoutParams(lp);
 
-            tableMembers.addView(tmrow);
+            tableMembers.addView(tmrow, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT));
             tableMembers.setColumnStretchable(0, true);
             tableMembers.setColumnStretchable(1, true);
         }
