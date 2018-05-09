@@ -118,6 +118,37 @@ public class Data extends Application{
         return names;
     }
 
+    public void checkForMonthlyPayments(){
+        if(gruppen==null)return;
+        for(Gruppe g:gruppen){
+            if(g.getBills()==null)return;
+            for(Zahlung z:g.getBills()){
+                if(z.getLooped()){
+                    boolean isToCopy = false;
+                    Calendar today = Calendar.getInstance();
+                    Calendar payDate = Calendar.getInstance();
+                    payDate.setTime(z.getPaydate());
+                    switch (z.getLoopInterval()){
+                        case DAY:
+                            long diff = today.getTimeInMillis() - payDate.getTimeInMillis();
+                            long days = diff / (24 * 60 * 60 * 1000);
+                            if(days==1){
+                                z.setInterval("NONE");
+                                z.setLoop(false);
+                            }
+                            break;
+                        case WEEK:
+                            break;
+                        case MONTH:
+                            break;
+                        case YEAR:
+                            break;
+                            default: return;
+                    }
+                }
+            }
+        }
+    }
 
     public void readFile(Activity caller){
         if(gruppen == null) gruppen = new ArrayList<Gruppe>();
@@ -204,7 +235,9 @@ public class Data extends Application{
         for (Gruppe g : gruppen){
             Log.i("GRUPPE", g.toString());
         }
+        checkForMonthlyPayments();
     }
+
     public void writeSaveFile(Activity caller){
         try{
             OutputStreamWriter myOutput = new OutputStreamWriter(caller.getApplicationContext().openFileOutput(filename,Context.MODE_PRIVATE));

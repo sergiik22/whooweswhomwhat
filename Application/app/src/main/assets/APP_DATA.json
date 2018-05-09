@@ -35,6 +35,55 @@
           "payedOn": "04/04/2014"
         }
       ]
+    },
+    {
+      "name": "GANG",
+      "members":
+      [
+        {"name":"username"},
+        {"name":"Johnny"},
+        {"name":"Christoph"}
+      ],
+      "bills":
+      [
+        {
+          "description" : "Coffee",
+          "amount":10.35,
+          "from": "username",
+          "to":
+          [
+            {"name":"Johnny"},
+            {"name":"Christoph"}
+          ],
+          "infinite":false,
+          "loopTime":"NONE",
+          "payedOn": "04/04/2014"
+        },
+        {
+          "description" : "Gasoline",
+          "amount":80.5,
+          "from": "Johnny",
+          "to":
+          [
+            {"name":"Christoph"}
+          ],
+          "infinite":false,
+          "loopTime":"NONE",
+          "payedOn": "04/04/2014"
+        },
+        {
+          "description" : "Netflix-Share",
+          "amount":3.5,
+          "from": "username",
+          "to":
+          [
+            {"name":"Christoph"}
+          ],
+          "infinite":true,
+          "loopTime":"Month",
+          "payedOn": "04/04/2014"
+        }
+      ]
     }
   ]
 }

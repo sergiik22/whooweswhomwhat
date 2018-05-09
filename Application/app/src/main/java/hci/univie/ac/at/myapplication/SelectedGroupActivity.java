@@ -130,7 +130,17 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
             tv2.setTextColor(Color.rgb(0, 0, 0));
 
             tv1.setText(MainActivity.mainGruppe.getMembers().get(i));
-            tv2.setText("");
+            //CALCULATION
+            double calcValue = MainActivity.mainGruppe.calculateForMember(i);
+            if(calcValue >= 0){
+
+                tv2.setTextColor(Color.rgb(0, 255, 0));
+            }else{
+
+                tv2.setTextColor(Color.rgb(255, 0, 0));
+                calcValue= calcValue * -1.0;
+            }
+            tv2.setText(Double.toString(calcValue));
 
             tmrow.setId(i);
             tmrow.addView(tv1);
@@ -195,6 +205,8 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
         }
 
     }
+
+
     //Function for Return Arrow
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -214,12 +226,10 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
         switch (tempid){
             case (R.id.add_new_member):
                 Intent intent = new Intent(this, NewMemberActivity.class);
-                finish();
                 startActivity(intent);
                 break;
             case (R.id.add_new_entry):
                 Intent intent1 = new Intent(this, NewBillActivity.class);
-                finish();
                 startActivity(intent1);
                 break;
         }

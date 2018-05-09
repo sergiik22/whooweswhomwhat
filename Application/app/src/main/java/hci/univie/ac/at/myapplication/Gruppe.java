@@ -56,20 +56,32 @@ public class Gruppe {
         return name;
     }
 
+    public double calculateForMember(int memberIndex){
+        String memberName = teilnehmerNamen.get(memberIndex);
+        double val=0;
+        for(Zahlung z:MainActivity.mainGruppe.getBills()){
+            if(z.getPayer().equals(memberName) || z.getPayed().contains(memberName)){
+                int totalMembers = z.getPayed().size()+1;
+                if(z.getPayer().equals(memberName)){
+                    val += z.getPrice()/ (double) totalMembers;
+                }else{
+                    val -= z.getPrice()/(double) totalMembers;
+                }
+            }
+        }
+        return val;
+    }
 
 
     @Override
     public String toString(){
         String s="{\"name\":\""+name+"\",";
-
-
         s+="\n\"members\":\n[\n";
         for(int i =0; i<teilnehmerNamen.size(); i++){
             if(i!=0)s+=",\n";
             s+="{\"name\":\""+teilnehmerNamen.get(i)+"\"}";
         }
         s+="\n],";
-
         s+="\"bills\":\n[\n";
         for (int i =0; i<teilnehmerZahlungen.size(); i++){
             if(i!=0)s+=",\n";
