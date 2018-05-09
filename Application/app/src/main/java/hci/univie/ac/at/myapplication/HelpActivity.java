@@ -1,0 +1,21 @@
+package hci.univie.ac.at.myapplication;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+/**
+ * Created by Benne on 09.05.2018.
+ */
+
+public class HelpActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_help);
+        setTitle("Hilfe");
+
+
+    }
+
+}

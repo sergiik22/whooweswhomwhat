@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +18,7 @@ import android.widget.TextView;
  * Created by Benne on 01.05.2018.
  */
 
-public class NewMemberActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewMemberActivity extends AppCompatActivity implements View.OnClickListener,TextWatcher {
 
     TextView tv1;
     Button btn_add;
@@ -75,5 +77,25 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
 
         }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        return;
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if(MainActivity.mainGruppe.getMembers().contains(s.toString().trim())){
+            et1.setError("Keine doppelten Namen!");
+            btn_add.setEnabled(false);
+        }else{
+            btn_add.setEnabled(true);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        return;
     }
 }

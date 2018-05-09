@@ -31,7 +31,15 @@ public class Gruppe {
         teilnehmerZahlungen.add(newBill);
     }
 
-    public boolean memberInGroup(String memberName){
+    public void changeName(String oldName, String newName){
+        for (Zahlung z:teilnehmerZahlungen){
+            if(z.hasMember(oldName))z.changeName(oldName,newName);
+        }
+        teilnehmerNamen.remove(oldName);
+        teilnehmerNamen.add(newName);
+    }
+
+    public boolean hasMember(String memberName){
         for(String name : teilnehmerNamen){
             if(name.equals(memberName))return true;
         }
@@ -47,6 +55,7 @@ public class Gruppe {
     public String getName(){
         return name;
     }
+
 
 
     @Override

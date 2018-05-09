@@ -1,47 +1,40 @@
-[
-  {
-    "name":"Profile",
-    "members":
-    [
-      {"name": "ben"}
-    ],
-    "bills":
-    [
-      {
-        "description":"rent",
-        "amount":300,
-        "infinite":true,
-        "loopTime":"MONTH",
-		"from":"Ben",
-		"to":
-		[
-			{"name":"Ben"}
-		],
-        "payedOn":"05/05/2018"
-      }
-    ]
-  },
-  {
-    "name": "WG",
-    "members":
-    [
-      {"name":"Ben"},
-      {"name":"Georg"}
-    ],
-    "bills":
-    [
-      {
-        "description" : "Payment",
-        "amount":30.5,
-        "from": "Ben",
-        "to":
-        [
-          {"name":"Georg"}
-        ],
-        "infinite":true,
-        "loopTime":"WEEK",
-        "payedOn": "04/04/2014"
-      }
-    ]
-  }
-]
+{
+  "user":"username",
+  "limit":1000,
+  "bills":
+  [
+    {
+      "description":"rent",
+      "amount":300,
+      "infinite":true,
+      "loopTime":"MONTH",
+      "payedOn":"05/05/2018"
+    }
+  ],
+  "group_data":
+  [
+    {
+      "name": "WG",
+      "members":
+      [
+        {"name":"username"},
+        {"name":"Georg"}
+      ],
+      "bills":
+      [
+        {
+          "description" : "Payment",
+          "amount":30.5,
+          "from": "username",
+          "to":
+          [
+            {"name":"Georg"}
+          ],
+          "infinite":true,
+          "loopTime":"WEEK",
+          "payedOn": "04/04/2014"
+        }
+      ]
+    }
+  ]
+}

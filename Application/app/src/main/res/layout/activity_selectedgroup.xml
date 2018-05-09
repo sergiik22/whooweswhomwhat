@@ -36,7 +36,10 @@
                 android:layout_height="140dip"
                 android:layout_gravity="center|top"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+            >
 
 
             </TableLayout>
@@ -83,7 +86,10 @@
                 android:layout_height="160dip"
                 android:layout_gravity="center|top"
                 android:layout_weight="1"
-                android:orientation="vertical"></TableLayout>
+                android:orientation="vertical"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+                ></TableLayout>
 
             </ScrollView>
             <Button

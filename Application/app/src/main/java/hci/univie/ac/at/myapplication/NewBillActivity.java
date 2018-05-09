@@ -110,6 +110,7 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
                 Zahlung z1 = new Zahlung(getbeschreibung, betragnew, spinner_item, currentTime);
                 MainActivity.mainGruppe.addBill(z1);
                 Intent intent = new Intent(this, SelectedGroupActivity.class);
+                finish();
                 startActivity(intent);
 
             }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("Startseite");
+        setTitle("Gruppenübersicht");
 
         if(mainData == null){
             mainData = Data.getInstance();
@@ -82,16 +82,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.PRuebersicht:
-                mainData.writeSaveFile(this);
-                //open Profile View
+                intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.settings:
-                //open Settings
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.HELP:
-                //open Help
+                intent = new Intent(this, HelpActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

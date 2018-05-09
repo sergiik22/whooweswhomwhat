@@ -7,6 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
  * Created by Benne on 01.05.2018.
  */
 
-public class NewGroupActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewGroupActivity extends AppCompatActivity implements View.OnClickListener,TextWatcher {
 
     private Data data = null;
     EditText et1;
@@ -51,6 +53,8 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
         d = getResources().getDrawable(R.drawable.button_border);
         et1 = (EditText) findViewById(R.id.group_name);
         et2 = (EditText) findViewById(R.id.new_member_name);
+        et2.addTextChangedListener(this);
+
         btn_add = (Button) findViewById(R.id.add_new_member);
         btn_create = (Button) findViewById(R.id.create_button);
         tableMembers = (TableLayout) findViewById(R.id.new_members_table);
@@ -139,5 +143,25 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent1);
             }
         }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        return;
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if(names.contains(s.toString().trim())){
+            et2.setError("Keine doppelten Namen!");
+            btn_add.setEnabled(false);
+        }else {
+            btn_add.setEnabled(true);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        return;
     }
 }

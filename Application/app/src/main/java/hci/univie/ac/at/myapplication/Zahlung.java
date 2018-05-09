@@ -29,6 +29,7 @@ public class Zahlung {
         preis = p;
         gezahltVon = gv;
         datum = date;
+        gezahltAn = new ArrayList<String>();
     }
 
     public void setDescription(String newDescription){
@@ -90,6 +91,20 @@ public class Zahlung {
         return datum;
     }
 
+    public boolean hasMember(String name){
+        if(gezahltVon.equals(name))return true;
+        else if(gezahltAn.contains(name)) return true;
+        else return false;
+    }
+    public void changeName(String oldName, String newName){
+        if(gezahltVon.equals(oldName))gezahltVon=newName;
+        else if(gezahltAn.contains(oldName)){
+            gezahltAn.remove(oldName);
+            gezahltAn.add(newName);
+        }
+    }
+
+
     @Override
     public String toString(){
         String s="{\n\"description\":\""+beschreibung+"\",\n";
@@ -105,6 +120,19 @@ public class Zahlung {
         s+="],\n";
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String format = formatter.format(datum);
+        s+="\"payedOn\":\""+format+"\"\n";
+        s+="}";
+        return s;
+    }
+
+    public String profileOBJString(){
+        String s = "{\n";
+        s+="\"description\":\""+beschreibung+"\",\n";
+        s+="\"amount\":"+preis+",\n";
+        s+="\"infinite\":"+dauerAuftrag+",\n";
+        s+="\"loopTime\":\""+loopZeit.name()+"\",\n";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String format = formatter.format(datum);
         s+="\"payedOn\":\""+format+"\"\n";
         s+="}";
