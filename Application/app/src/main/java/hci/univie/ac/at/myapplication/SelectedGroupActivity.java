@@ -140,7 +140,7 @@ public class SelectedGroupActivity extends AppCompatActivity implements View.OnC
                 tv2.setTextColor(Color.rgb(255, 0, 0));
                 calcValue= calcValue * -1.0;
             }
-            tv2.setText(Double.toString(calcValue));
+            tv2.setText(String.format("%.2f", calcValue));
 
             tmrow.setId(i);
             tmrow.addView(tv1);

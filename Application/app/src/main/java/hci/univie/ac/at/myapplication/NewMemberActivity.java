@@ -74,6 +74,7 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
         }
         else {
             MainActivity.mainGruppe.addMember(getname);
+            Data.getInstance().writeSaveFile(this);
             Intent intent = new Intent(this, SelectedGroupActivity.class);
             startActivity(intent);
 

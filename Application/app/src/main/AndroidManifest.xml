@@ -20,7 +20,6 @@
         <activity android:name=".NewBillActivity"/>
         <activity android:name=".NewGroupActivity"/>
         <activity android:name=".NewMemberActivity"/>
-        <activity android:name=".OptionsActivity"/>
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".SelectedGroupActivity"/>
         <activity android:name=".SettingsActivity"/>

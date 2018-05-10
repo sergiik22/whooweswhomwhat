@@ -138,6 +138,7 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
 
                 Gruppe grnew = new Gruppe(getname1, names);
                 data.addGruppe(grnew);
+                data.writeSaveFile(this);
                 Intent intent1 = new Intent(this, MainActivity.class);
                 finish();
                 startActivity(intent1);

@@ -108,7 +108,14 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
                 Date currentTime = Calendar.getInstance().getTime();
                 double betragnew = Double.parseDouble(getbetrag);
                 Zahlung z1 = new Zahlung(getbeschreibung, betragnew, spinner_item, currentTime);
+                //REVIEW AND MAYBE ADD OPTIONS
+                ArrayList<String> names = new ArrayList<String>();
+                for(String s:MainActivity.mainGruppe.getMembers()) names.add(s);
+                z1.setPayed(names);
+                z1.setLoop(false);
+                z1.setInterval("NONE");
                 MainActivity.mainGruppe.addBill(z1);
+                Data.getInstance().writeSaveFile(this);
                 Intent intent = new Intent(this, SelectedGroupActivity.class);
                 finish();
                 startActivity(intent);

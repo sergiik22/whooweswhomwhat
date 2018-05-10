@@ -1,5 +1,7 @@
 package hci.univie.ac.at.myapplication;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -59,16 +61,18 @@ public class Gruppe {
     public double calculateForMember(int memberIndex){
         String memberName = teilnehmerNamen.get(memberIndex);
         double val=0;
+        Log.i("CALCSTART",memberName);
         for(Zahlung z:MainActivity.mainGruppe.getBills()){
             if(z.getPayer().equals(memberName) || z.getPayed().contains(memberName)){
-                int totalMembers = z.getPayed().size()+1;
+                int totalMembers = z.getPayed().size();
                 if(z.getPayer().equals(memberName)){
-                    val += z.getPrice()/ (double) totalMembers;
-                }else{
-                    val -= z.getPrice()/(double) totalMembers;
+                    val += z.getPrice();
                 }
+                val -= z.getPrice()/(double) totalMembers;
+                Log.i("CALCSTAT",val+"");
             }
         }
+        Log.i("CALCEND",memberName);
         return val;
     }
 

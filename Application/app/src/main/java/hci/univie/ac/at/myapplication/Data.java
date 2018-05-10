@@ -122,28 +122,55 @@ public class Data extends Application{
         if(gruppen==null)return;
         for(Gruppe g:gruppen){
             if(g.getBills()==null)return;
-            for(Zahlung z:g.getBills()){
-                if(z.getLooped()){
+            for(int i=0; i<g.getBills().size(); i++){
+                if(g.getBills().get(i).getLooped()){
+                    Zahlung z = g.getBills().get(i);
                     boolean isToCopy = false;
                     Calendar today = Calendar.getInstance();
                     Calendar payDate = Calendar.getInstance();
                     payDate.setTime(z.getPaydate());
+                    long diff;
+                    long days;
                     switch (z.getLoopInterval()){
                         case DAY:
-                            long diff = today.getTimeInMillis() - payDate.getTimeInMillis();
-                            long days = diff / (24 * 60 * 60 * 1000);
-                            if(days==1){
-                                z.setInterval("NONE");
-                                z.setLoop(false);
+                            diff = today.getTimeInMillis() - payDate.getTimeInMillis();
+                            days = diff / (24 * 60 * 60 * 1000);
+                            if(days>=1){
+                               isToCopy = true;
+                               payDate.add(Calendar.DAY_OF_MONTH,1);
                             }
                             break;
                         case WEEK:
+                            diff = today.getTimeInMillis() - payDate.getTimeInMillis();
+                            days = diff / (24 * 60 * 60 * 1000);
+                            if(days>=7 ){
+                                isToCopy = true;
+                                payDate.add(Calendar.DAY_OF_MONTH,7);
+                            }
                             break;
                         case MONTH:
+                            if(today.get(Calendar.DAY_OF_MONTH)>=payDate.get(Calendar.DAY_OF_MONTH) && today.get(Calendar.MONTH) > payDate.get(Calendar.MONTH)){
+                                isToCopy = true;
+                                payDate.add(Calendar.MONTH,1);
+                            }
                             break;
                         case YEAR:
+                            if(today.get(Calendar.DAY_OF_MONTH)>=payDate.get(Calendar.DAY_OF_MONTH) && today.get(Calendar.MONTH) >= payDate.get(Calendar.MONTH) && today.get(Calendar.YEAR) > payDate.get(Calendar.YEAR)){
+                                isToCopy = true;
+                                payDate.add(Calendar.YEAR,1);
+                            }
                             break;
-                            default: return;
+                            default: continue;
+                    }
+                    if(isToCopy){
+                        Zahlung copyZ = new Zahlung(z.getDescription(),z.getPrice(), z.getPayer(),payDate.getTime());
+                        copyZ.setPayed(z.getPayed());
+                        copyZ.setLoop(true);
+                        copyZ.setInterval(z.getLoopInterval().name());
+
+                        z.setInterval("NONE");
+                        z.setLoop(false);
+                        g.addBill(copyZ);
                     }
                 }
             }
