@@ -1,5 +1,6 @@
 package hci.univie.ac.at.myapplication;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -25,7 +28,7 @@ import java.util.ArrayList;
  * Created by Benne on 01.05.2018.
  */
 
-public class NewGroupActivity extends AppCompatActivity implements View.OnClickListener,TextWatcher {
+public class NewGroupActivity extends AppCompatActivity implements View.OnClickListener,TextWatcher, View.OnKeyListener {
 
     private Data data = null;
     EditText et1;
@@ -59,9 +62,34 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
         btn_create = (Button) findViewById(R.id.create_button);
         tableMembers = (TableLayout) findViewById(R.id.new_members_table);
 
+        lp.setMargins(5, 5, 5, 5);
+
+        //User is in Group by default
+
+        tmrow = new TableRow(this);
+        tv = new TextView(this);
+        tv.setBackground(d);
+        tv.setHeight(130);
+        tv.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+        tv.setTextSize(18);
+        tv.setTextColor(Color.rgb(0, 0, 0));
+        tv.setText("  " + data.getUsername());
+        tv.setId(i);
+        tmrow.setId(i);
+        tmrow.addView(tv);
+        tv.setLayoutParams(lp);
+        tableMembers.addView(tmrow);
+        tableMembers.setColumnStretchable(0, true);
+        ++i;
+        names.add(data.getUsername());
 
         btn_add.setOnClickListener(this);
         btn_create.setOnClickListener(this);
+
+
+        et1.setOnKeyListener(this);
+
+
     }
 
     //Function for Return Arrow
@@ -101,7 +129,7 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
                 tmrow = new TableRow(this);
                 tv = new TextView(this);
                 tv.setBackground(d);
-                tv.setHeight(110);
+                tv.setHeight(130);
                 tv.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 tv.setTextSize(18);
                 tv.setTextColor(Color.rgb(0, 0, 0));
@@ -115,7 +143,13 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
                 ++i;
                 names.add(getname);
                 et2.getText().clear();
-                Log.i("Name", names.get(0));
+
+
+                View view = this.getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
 
             }
         }
@@ -165,4 +199,38 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
     public void afterTextChanged(Editable s) {
         return;
     }
+
+    /**
+     * Called when a hardware key is dispatched to a view. This allows listeners to
+     * get a chance to respond before the target view.
+     * <p>Key presses in software keyboards will generally NOT trigger this method,
+     * although some may elect to do so in some situations. Do not assume a
+     * software input method has to be key-based; even if it is, it may use key presses
+     * in a different way than you expect, so there is no way to reliably catch soft
+     * input key presses.
+     *
+     * @param v       The view the key has been dispatched to.
+     * @param keyCode The code for the physical key that was pressed
+     * @param event   The KeyEvent object containing full information about
+     *                the event.
+     * @return True if the listener has consumed the event, false otherwise.
+     */
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        {
+
+
+
+            if ( (event.getAction() == KeyEvent.ACTION_DOWN  ) &&
+                    (keyCode           == KeyEvent.KEYCODE_ENTER)   )
+            {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(et1.getWindowToken(), 0);
+                return true;
+            }
+            return false;
+
+
+    }
+}
 }

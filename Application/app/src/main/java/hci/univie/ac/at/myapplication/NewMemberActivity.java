@@ -89,7 +89,7 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if(MainActivity.mainGruppe.getMembers().contains(s.toString().trim())){
-            Log.i("NAMECOMPARE",s.toString());
+            //Log.i("NAMECOMPARE",s.toString());
             et1.setError("Keine doppelten Namen!");
             btn_add.setEnabled(false);
         }else{

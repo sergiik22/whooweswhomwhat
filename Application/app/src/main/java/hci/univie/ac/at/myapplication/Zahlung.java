@@ -30,6 +30,17 @@ public class Zahlung {
         gezahltVon = gv;
         datum = date;
         gezahltAn = new ArrayList<String>();
+        dauerAuftrag = false;
+    }
+
+    public Zahlung (String b, double p, String gv, Date date, String dauer){
+        beschreibung = b;
+        preis = p;
+        gezahltVon = gv;
+        datum = date;
+        gezahltAn = new ArrayList<String>();
+        dauerAuftrag = true;
+        setInterval(dauer);
     }
 
     public void setDescription(String newDescription){

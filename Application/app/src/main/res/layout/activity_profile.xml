@@ -1,58 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30px"
-        android:layout_marginRight="30px"
-        android:layout_marginBottom="10px"
-        android:layout_marginLeft="30px">
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="15dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/profile_picture"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
             android:layout_alignParentRight="true"
-            android:minHeight="160px"
-            android:maxHeight="160px"
-            android:minWidth="160px"
-            android:maxWidth="160px"
-            android:padding="5px"
             android:background="#000000"
             android:foregroundGravity="right"
-            android:id="@+id/profile_picture"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Aktueller Stand:"/>
-            <!-- Add a limitview here -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Eigene Ausgaben:"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="300px"
-                android:id="@+id/personal_bills"
-                android:orientation="vertical"></LinearLayout>
-            <Button
-                android:layout_width="400px"
-                android:layout_height="wrap_content"
-                android:text="Neuer Eintrag"
-                android:layout_gravity="right"
-                android:id="@+id/new_entry"/>
+            android:maxHeight="160px"
+            android:maxWidth="160px"
+            android:minHeight="160px"
+            android:minWidth="160px"
+            android:padding="5px"
+            android:src="@drawable/im1" />
 
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:text="Username"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvLimit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvUserName"
+            android:layout_below="@+id/tvUserName"
+            android:layout_marginTop="22dp"
+            android:text="Limit"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvKontostand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvLimit"
+            android:layout_below="@+id/tvLimit"
+            android:layout_marginTop="20dp"
+            android:text="Kontostand"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvShowUN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvUserName"
+            android:layout_alignBottom="@+id/tvUserName"
+            android:layout_alignStart="@+id/tvShowLT"
+            android:text="sssss"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvShowLT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvLimit"
+            android:layout_alignBottom="@+id/tvLimit"
+            android:layout_centerHorizontal="true"
+            android:text="ssss"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvShowKS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvKontostand"
+            android:layout_alignBottom="@+id/tvKontostand"
+            android:layout_alignStart="@+id/tvShowLT"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvAusgabe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tvKontostand"
+            android:layout_below="@+id/tvKontostand"
+            android:layout_marginTop="19dp"
+            android:text="Meine Ausgabe"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ScrollView02"
+            android:layout_width="fill_parent"
+            android:layout_height="250dip"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvAusgabe"
+            android:layout_marginTop="14dp">
+
+            <TableLayout
+                android:id="@+id/tbl_Ausgabe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btn_newausgabe"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+
+            android:background="@drawable/button_color"
+            android:text="Neuer Eintrag"
+            android:textColor="@android:color/white" />
 
 
     </RelativeLayout>

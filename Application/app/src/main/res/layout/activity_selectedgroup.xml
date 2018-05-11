@@ -44,66 +44,90 @@
 
             </TableLayout>
         </ScrollView>
-            <Button
 
-                android:id="@+id/add_new_member"
-                android:layout_width="150dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_color"
-                android:padding="10sp"
-                android:text="Neues Mitglied"
-                android:textColor="@android:color/white"
-                android:clickable="true"
-                 />
+        <Button
+
+            android:id="@+id/add_new_member"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_color"
+            android:clickable="true"
+            android:padding="10sp"
+            android:text="Neues Mitglied"
+            android:textColor="@android:color/white" />
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/historie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginTop="2dp"
             android:background="@drawable/layout_border"
-            android:layout_marginTop="2dp">
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/gesamt_historie"
+                    android:layout_width="150dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_margin="5dp"
+
+                    android:layout_weight="1"
+                    android:background="@drawable/button_color"
+                    android:text="Gesamthistorie"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/add_new_entry"
+                    android:layout_width="150dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:layout_margin="5dp"
+
+                    android:layout_weight="1"
+                    android:background="@drawable/button_color"
+                    android:text="Neuer Eintrag"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="35dip"
+                android:layout_margin="5dp"
                 android:text="Zahlungshistorie:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_margin="5dp"/>
+                android:textStyle="bold" />
 
             <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/ScrollView02"
                 android:layout_width="fill_parent"
-                android:layout_height="160dip">
-            <TableLayout
-                android:id="@+id/bill_history"
-                android:layout_width="match_parent"
-                android:layout_height="160dip"
-                android:layout_gravity="center|top"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:stretchColumns="*"
-                android:shrinkColumns="*"
-                ></TableLayout>
+                android:layout_height="205dip"
+                android:layout_marginTop="40dp">
+
+                <TableLayout
+                    android:id="@+id/bill_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="205dip"
+                    android:layout_gravity="center|top"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*"></TableLayout>
+
 
             </ScrollView>
-            <Button
-                android:id="@+id/add_new_entry"
-                android:layout_width="150dip"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center"
-                android:layout_margin="5dp"
 
-                android:text="Neuer Eintrag"
-                android:background="@drawable/button_color"
-                android:textColor="@android:color/white"
-                />
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>

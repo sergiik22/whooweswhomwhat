@@ -47,7 +47,7 @@ public class Data extends Application{
     public double getLimit(){
         return nutzer.getLimit();
     }
-
+    public Profil getNutzer() {return nutzer;}
     public Gruppe getGroup(String name){
         if(gruppen == null)return null;
         for(Gruppe g:gruppen){
@@ -180,8 +180,8 @@ public class Data extends Application{
     public void readFile(Activity caller){
         if(gruppen == null) gruppen = new ArrayList<Gruppe>();
         try {
-            //InputStream is = caller.getApplicationContext().openFileInput(filename);
-            InputStream is = caller.getApplicationContext().getAssets().open(filename);
+            InputStream is = caller.getApplicationContext().openFileInput(filename);
+            //InputStream is = caller.getApplicationContext().getAssets().open(filename);
             int jsonLength = is.available();
             byte[] buff = new byte[jsonLength];
             is.read(buff);
@@ -260,7 +260,7 @@ public class Data extends Application{
             Log.i("ERROR", e.getMessage());
         }
         for (Gruppe g : gruppen){
-            Log.i("GRUPPE", g.toString());
+            //Log.i("GRUPPE", g.toString());
         }
         checkForMonthlyPayments();
     }

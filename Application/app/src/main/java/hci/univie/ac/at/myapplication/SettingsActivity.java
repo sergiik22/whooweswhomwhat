@@ -64,6 +64,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             local.setNewLimit(Double.parseDouble(et_limit.getText().toString()));
         }
         local.writeSaveFile(this);
+            Intent intent1 = new Intent(this, MainActivity.class);
+            finish();
+            startActivity(intent1);
         }
     }
 

@@ -61,7 +61,7 @@ public class Gruppe {
     public double calculateForMember(int memberIndex){
         String memberName = teilnehmerNamen.get(memberIndex);
         double val=0;
-        Log.i("CALCSTART",memberName);
+        //Log.i("CALCSTART",memberName);
         for(Zahlung z:MainActivity.mainGruppe.getBills()){
             if(z.getPayer().equals(memberName) || z.getPayed().contains(memberName)){
                 int totalMembers = z.getPayed().size();
@@ -69,10 +69,10 @@ public class Gruppe {
                     val += z.getPrice();
                 }
                 val -= z.getPrice()/(double) totalMembers;
-                Log.i("CALCSTAT",val+"");
+               // Log.i("CALCSTAT",val+"");
             }
         }
-        Log.i("CALCEND",memberName);
+       // Log.i("CALCEND",memberName);
         return val;
     }
 

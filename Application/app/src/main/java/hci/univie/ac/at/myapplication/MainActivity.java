@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static Data mainData = null;
     public static Gruppe mainGruppe;// = new Gruppe();
     Button btn_group;
-
+    TextView tvun;
+    TextView tvlt;
+    TextView tvks;
 
 
     @Override
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         createView();
 
-        Log.i("APPDIR",this.getFilesDir().getAbsolutePath());
+       //Log.i("APPDIR",this.getFilesDir().getAbsolutePath());
     }
 
     private void createView(){
@@ -49,6 +52,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myLayout.removeAllViews();
         btn_group = (Button)findViewById(R.id.new_group_button);
 
+
+        tvun = (TextView)findViewById(R.id.tvShowUNM);
+        tvlt = (TextView)findViewById(R.id.tvShowLTM);
+        tvks = (TextView)findViewById(R.id.tvShowKSM);
+        tvun.setTextColor(Color.rgb(26, 117, 255));
+        tvlt.setTextColor(Color.rgb(26, 117, 255));
+        tvun.setText(mainData.getUsername().toString());
+        tvlt.setText(String.valueOf(mainData.getLimit()));
+
+        double summ = 0;
 
         //Making new Buttons for each Group
         for (int i = 0; i < mainData.getGruppeArray().size(); ++i){
@@ -58,7 +71,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
             myParams.setMargins(5, 10, 5, 10);
-            btn.setText(mainData.getGruppeArray().get(i).getName());
+
+            String memberName = mainData.getUsername();
+            double val=0;
+
+            for(Zahlung z: mainData.getGruppeArray().get(i).getBills()){
+                if(z.getPayer().equals(memberName) || z.getPayed().contains(memberName)){
+                    int totalMembers = z.getPayed().size();
+                    if(z.getPayer().equals(memberName)){
+                        val += z.getPrice();
+                    }
+                    val -= z.getPrice()/(double) totalMembers;
+                }
+            }
+            String tempval = (String.format("%.2f", val));
+            if(val >= 0){
+
+                btn.setTextColor(Color.rgb(37, 142, 37));
+                btn.setText(mainData.getGruppeArray().get(i).getName() + ":          + " + tempval);
+            }else{
+
+                btn.setTextColor(Color.rgb(255, 0, 0));
+                btn.setText(mainData.getGruppeArray().get(i).getName() + ":           " + tempval);
+            }
+
+
             btn.setId(i);
             Drawable d = getResources().getDrawable(R.drawable.button_border);
             btn.setBackground(d);
@@ -67,8 +104,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             btn.setOnClickListener((View.OnClickListener) this);
             myLayout.addView(btn, myParams);
-
+            summ += val;
         }
+
+        //Kontostand Berechnung
+
+        String tempsumm = (String.format("%.2f", summ));
+        if(summ >= 0){
+
+            tvks.setTextColor(Color.rgb(37, 142, 37));
+            tvks.setText(tempsumm);
+        }else{
+
+            tvks.setTextColor(Color.rgb(255, 0, 0));
+            tvks.setText(tempsumm);
+        }
+
         btn_group.setOnClickListener(this);
     }
 
@@ -110,8 +161,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //On click start activity SelectedGroupActivity. mainGruppe is now the chosen group
         else {
             Intent intent = new Intent(this, SelectedGroupActivity.class);
-            String btnName = ((Button) v).getText().toString();
-            mainGruppe = mainData.getGroup(btnName);
+            String temp_string = ((Button) v).getText().toString();
+            String[] btnName = temp_string.split(":");
+            mainGruppe = mainData.getGroup(btnName[0]);
 
             startActivity(intent);
         }

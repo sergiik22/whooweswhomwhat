@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_selected_group1">SelectedGroupActivity1</string>
+    <string name="title_activity_selected_group2">SelectedGroupActivity2</string>
 </resources>

@@ -44,12 +44,82 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/buget_calculation"
                 android:layout_width="350dip"
                 android:layout_height="150dip"
                 android:minHeight="300px"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tvUserNameM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Username"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvLimitM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tvUserNameM"
+                    android:layout_below="@+id/tvUserNameM"
+                    android:layout_marginTop="15dp"
+                    android:text="Limit"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvKontostandM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tvLimitM"
+                    android:layout_below="@+id/tvLimitM"
+                    android:layout_marginTop="17dp"
+                    android:text="Kontostand"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvShowUNM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/tvShowLTM"
+                    android:text="sssss"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvShowLTM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tvKontostandM"
+                    android:layout_marginStart="47dp"
+                    android:layout_toEndOf="@+id/tvKontostandM"
+                    android:text="sssss"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvShowKSM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvKontostandM"
+                    android:layout_alignBottom="@+id/tvKontostandM"
+                    android:layout_alignStart="@+id/tvShowLTM"
+                    android:text="ssss"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -58,17 +128,22 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ScrollView02"
+                android:layout_width="fill_parent"
+                android:layout_height="205dip"
+               >
 
-            <LinearLayout
-                android:id="@+id/my_groups"
-                android:layout_width="match_parent"
-                android:layout_height="302dp"
-                android:minHeight="300px"
-                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/my_groups"
+                    android:layout_width="match_parent"
+                    android:layout_height="205dip"
+                    android:minHeight="300px"
+                    android:orientation="vertical">
 
 
-            </LinearLayout>
-
+                </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
 
