@@ -116,7 +116,8 @@
             android:text="Beleg (Foto):"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/add_bill_picture"
@@ -129,7 +130,9 @@
             android:focusedByDefault="true"
             android:minWidth="200px"
             android:text="+"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            android:enabled="false"/>
 
         <CheckBox
             android:id="@+id/cb_loop"

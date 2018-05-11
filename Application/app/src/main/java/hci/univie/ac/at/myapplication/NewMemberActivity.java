@@ -57,7 +57,7 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         String getname = et1.getText().toString();
-
+        //ERROR
         if (getname.matches("")){
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(NewMemberActivity.this);
             mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
@@ -72,6 +72,7 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
             AlertDialog aldialog = mBuilder.create();
             aldialog.show();
         }
+        //ADD
         else {
             MainActivity.mainGruppe.addMember(getname);
             Data.getInstance().writeSaveFile(this);
@@ -81,6 +82,7 @@ public class NewMemberActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    //Check if name is already used
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         return;

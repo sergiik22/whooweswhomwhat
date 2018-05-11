@@ -20,6 +20,7 @@ public class Zahlung {
     private LoopZeit loopZeit;
     private Date datum;
 
+    //Constructor
     public Zahlung(){
         gezahltAn = new ArrayList<String>();
     }
@@ -42,7 +43,7 @@ public class Zahlung {
         dauerAuftrag = true;
         setInterval(dauer);
     }
-
+    //Setter
     public void setDescription(String newDescription){
         beschreibung = newDescription;
     }
@@ -79,7 +80,14 @@ public class Zahlung {
     public void setPaydate(Date date){
         datum = date;
     }
-
+    public void changeName(String oldName, String newName){
+        if(gezahltVon.equals(oldName))gezahltVon=newName;
+        else if(gezahltAn.contains(oldName)){
+            gezahltAn.remove(oldName);
+            gezahltAn.add(newName);
+        }
+    }
+    //Getter
     public String getDescription(){
         return beschreibung;
     }
@@ -107,15 +115,10 @@ public class Zahlung {
         else if(gezahltAn.contains(name)) return true;
         else return false;
     }
-    public void changeName(String oldName, String newName){
-        if(gezahltVon.equals(oldName))gezahltVon=newName;
-        else if(gezahltAn.contains(oldName)){
-            gezahltAn.remove(oldName);
-            gezahltAn.add(newName);
-        }
-    }
 
 
+    //ToStringMethods
+    //Basic
     @Override
     public String toString(){
         String s="{\n\"description\":\""+beschreibung+"\",\n";
@@ -136,7 +139,7 @@ public class Zahlung {
         s+="}";
         return s;
     }
-
+    //For Profile usage
     public String profileOBJString(){
         String s = "{\n";
         s+="\"description\":\""+beschreibung+"\",\n";

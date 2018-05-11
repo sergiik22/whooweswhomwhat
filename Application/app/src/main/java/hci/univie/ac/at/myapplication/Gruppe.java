@@ -13,6 +13,7 @@ public class Gruppe {
     private ArrayList<String> teilnehmerNamen;
     private ArrayList<Zahlung> teilnehmerZahlungen;
 
+    //Constructors
     public Gruppe(){
         teilnehmerNamen = new ArrayList<String>();
         teilnehmerZahlungen = new ArrayList<Zahlung>();
@@ -23,6 +24,7 @@ public class Gruppe {
         name = n;
         teilnehmerNamen = arr;
     }
+    //Setter
     public void setName(String newName){
         name = newName;
     }
@@ -47,7 +49,7 @@ public class Gruppe {
         }
         return false;
     }
-
+    //Getter
     public ArrayList<String> getMembers(){
         return teilnehmerNamen;
     }
@@ -58,21 +60,19 @@ public class Gruppe {
         return name;
     }
 
+    //Calculate current financial state of member
     public double calculateForMember(int memberIndex){
         String memberName = teilnehmerNamen.get(memberIndex);
         double val=0;
-        //Log.i("CALCSTART",memberName);
         for(Zahlung z:MainActivity.mainGruppe.getBills()){
             if(z.getPayer().equals(memberName) || z.getPayed().contains(memberName)){
                 int totalMembers = z.getPayed().size();
                 if(z.getPayer().equals(memberName)){
                     val += z.getPrice();
                 }
-                val -= z.getPrice()/(double) totalMembers;
-               // Log.i("CALCSTAT",val+"");
+                if(z.getPayed().contains(memberName))val -= z.getPrice()/(double) totalMembers;
             }
         }
-       // Log.i("CALCEND",memberName);
         return val;
     }
 

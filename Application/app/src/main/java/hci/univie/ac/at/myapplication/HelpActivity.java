@@ -13,13 +13,13 @@ import android.view.MenuItem;
 
 public class HelpActivity extends AppCompatActivity {
 
+    //Only text, no functionality
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
         setTitle("Hilfe");
-
-
     }
 
     @Override
@@ -28,6 +28,7 @@ public class HelpActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection

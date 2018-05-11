@@ -37,7 +37,7 @@ public class HistoryActivity extends AppCompatActivity {
                 TableRow.LayoutParams.WRAP_CONTENT);
 
         lp.setMargins(5, 5, 5, 5);
-
+        //Create a Row for each bill in the history
         for (int i = 0; i < MainActivity.mainGruppe.getBills().size(); ++i){
 
 

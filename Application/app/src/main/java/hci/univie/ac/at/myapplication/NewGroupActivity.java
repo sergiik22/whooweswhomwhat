@@ -47,7 +47,6 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(data == null) data = Data.getInstance();
@@ -105,12 +104,14 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
      *
      * @param v The view that was clicked.
      */
+
     @Override
     public void onClick(View v) {
         String getname = et2.getText().toString();
         String getname1 = et1.getText().toString();
         int tempid = v.getId();
         if (tempid == R.id.add_new_member) {
+            //Error
             if (getname.matches("")) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(NewGroupActivity.this);
                 mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
@@ -124,7 +125,9 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
                 });
                 AlertDialog aldialog = mBuilder.create();
                 aldialog.show();
-            } else {
+            }
+            //Add
+            else {
                 lp.setMargins(5, 5, 5, 5);
                 tmrow = new TableRow(this);
                 tv = new TextView(this);
@@ -154,6 +157,7 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
             }
         }
         else if (tempid == R.id.create_button){
+            //Error
             if (getname1.matches("")) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(NewGroupActivity.this);
                 mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
@@ -167,7 +171,9 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
                 });
                 AlertDialog aldialog = mBuilder.create();
                 aldialog.show();
-            } else {
+            }
+            //Add
+            else {
                 //Mistake, probably to use on resume in ActivityMain
 
                 Gruppe grnew = new Gruppe(getname1, names);
@@ -180,6 +186,8 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+
+    //Check if name already used
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         return;
@@ -200,27 +208,11 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
         return;
     }
 
-    /**
-     * Called when a hardware key is dispatched to a view. This allows listeners to
-     * get a chance to respond before the target view.
-     * <p>Key presses in software keyboards will generally NOT trigger this method,
-     * although some may elect to do so in some situations. Do not assume a
-     * software input method has to be key-based; even if it is, it may use key presses
-     * in a different way than you expect, so there is no way to reliably catch soft
-     * input key presses.
-     *
-     * @param v       The view the key has been dispatched to.
-     * @param keyCode The code for the physical key that was pressed
-     * @param event   The KeyEvent object containing full information about
-     *                the event.
-     * @return True if the listener has consumed the event, false otherwise.
-     */
+
+    //Add on enter?
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         {
-
-
-
             if ( (event.getAction() == KeyEvent.ACTION_DOWN  ) &&
                     (keyCode           == KeyEvent.KEYCODE_ENTER)   )
             {

@@ -29,6 +29,7 @@ public class EintragProfilActivity extends AppCompatActivity implements View.OnC
     boolean is_checked = false;
     private Data local = null;
 
+    //Create Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class EintragProfilActivity extends AppCompatActivity implements View.OnC
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Neue Zahlung");
-
+        //Prepare Elements
         et1 = (EditText)findViewById(R.id.bill_description1);
         et2 = (EditText)findViewById(R.id.bill_amount1);
 
@@ -44,7 +45,6 @@ public class EintragProfilActivity extends AppCompatActivity implements View.OnC
         cb = (CheckBox)findViewById(R.id.cb_loop1);
         sp2.setEnabled(false);
         local = Data.getInstance();
-
         ArrayList<String> arrtemp = new ArrayList<>();
         arrtemp.add("DAY");
         arrtemp.add("WEEK");
@@ -94,7 +94,7 @@ public class EintragProfilActivity extends AppCompatActivity implements View.OnC
         int tempid = v.getId();
         if (tempid == btn_create.getId()) {
 
-
+            //Errors
             if (getbeschreibung.matches("")) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(EintragProfilActivity.this);
                 mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
@@ -122,7 +122,7 @@ public class EintragProfilActivity extends AppCompatActivity implements View.OnC
                 AlertDialog aldialog = mBuilder.create();
                 aldialog.show();
             } else {
-
+                //Add new entry
                 Date currentTime = Calendar.getInstance().getTime();
                 double betragnew = Double.parseDouble(getbetrag);
                 if (!is_checked)

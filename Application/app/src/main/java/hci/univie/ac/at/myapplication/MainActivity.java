@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView tvlt;
     TextView tvks;
 
-
+    //Mainscreen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mainData.readFile(this);
         }
         createView();
-
-       //Log.i("APPDIR",this.getFilesDir().getAbsolutePath());
     }
 
+    //Create all viewElements
     private void createView(){
         LinearLayout myLayout = (LinearLayout) findViewById(R.id.my_groups);
         myLayout.removeAllViews();
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             myParams.setMargins(5, 10, 5, 10);
 
             String memberName = mainData.getUsername();
-            double val=0;
+            double val = 0;
 
             for(Zahlung z: mainData.getGruppeArray().get(i).getBills()){
                 if(z.getPayer().equals(memberName) || z.getPayed().contains(memberName)){
@@ -81,19 +80,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(z.getPayer().equals(memberName)){
                         val += z.getPrice();
                     }
-                    val -= z.getPrice()/(double) totalMembers;
+                    if(z.getPayed().contains(memberName))val -= z.getPrice()/(double) totalMembers;
                 }
             }
-            String tempval = (String.format("%.2f", val));
+            summ += val;
+
+            //Color green or red based on value
             if(val >= 0){
 
                 btn.setTextColor(Color.rgb(37, 142, 37));
-                btn.setText(mainData.getGruppeArray().get(i).getName() + ":          + " + tempval);
+
             }else{
 
                 btn.setTextColor(Color.rgb(255, 0, 0));
-                btn.setText(mainData.getGruppeArray().get(i).getName() + ":           " + tempval);
+                val = val * -1;
             }
+            String tempval = (String.format("%.2f", val));
+            btn.setText(mainData.getGruppeArray().get(i).getName() + ":          " + tempval);
+
 
 
             btn.setId(i);
@@ -104,10 +108,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             btn.setOnClickListener((View.OnClickListener) this);
             myLayout.addView(btn, myParams);
-            summ += val;
         }
 
-        //Kontostand Berechnung
+        //User finance state calculation
 
         String tempsumm = (String.format("%.2f", summ));
         if(summ >= 0){
@@ -123,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_group.setOnClickListener(this);
     }
 
+    //Menue
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

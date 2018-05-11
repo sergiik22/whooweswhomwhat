@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="15dp">
+        tools:layout_editor_absoluteY="15dp"
+        >
 
         <ImageView
             android:id="@+id/profile_picture"
@@ -24,6 +25,8 @@
             android:minHeight="160px"
             android:minWidth="160px"
             android:padding="5px"
+            android:layout_marginTop="30px"
+            android:layout_marginRight="30px"
             android:src="@drawable/im1" />
 
         <TextView
@@ -56,7 +59,7 @@
             android:layout_alignStart="@+id/tvLimit"
             android:layout_below="@+id/tvLimit"
             android:layout_marginTop="20dp"
-            android:text="Kontostand"
+            android:text="Bilanz"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -102,7 +105,7 @@
             android:layout_alignStart="@+id/tvKontostand"
             android:layout_below="@+id/tvKontostand"
             android:layout_marginTop="19dp"
-            android:text="Meine Ausgabe"
+            android:text="Meine Ausgaben"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />

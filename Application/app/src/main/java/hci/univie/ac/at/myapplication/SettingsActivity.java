@@ -48,6 +48,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         btn_saveSettings.setOnClickListener(this);
     }
 
+    //Change user data
     @Override
     public void onClick(View v) {
         if(et_userName.getText().toString().equals("") && et_limit.getText().toString().equals("")){
@@ -70,6 +71,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    //Check for used names
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         return;
@@ -91,6 +93,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         return;
     }
 
+    //Menue
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

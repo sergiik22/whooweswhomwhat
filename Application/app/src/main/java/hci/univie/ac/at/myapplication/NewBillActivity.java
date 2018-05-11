@@ -115,7 +115,7 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
         int tempid = v.getId();
         if (tempid == btn_create.getId()) {
 
-
+            //Error
             if (getbeschreibung.matches("")) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(NewBillActivity.this);
                 mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
@@ -142,7 +142,9 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
                 });
                 AlertDialog aldialog = mBuilder.create();
                 aldialog.show();
-            } else {
+            }
+            //ADD
+            else {
 
                          String spinner_item = sp1.getSelectedItem().toString();
                          Date currentTime = Calendar.getInstance().getTime();

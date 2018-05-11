@@ -34,6 +34,7 @@ public class Data extends Application{
     private Profil nutzer = null;
     private ArrayList<Gruppe> gruppen = null;
 
+    //Define Singleton Instance
     private Data(){}
 
     public static Data getInstance(){
@@ -41,6 +42,7 @@ public class Data extends Application{
         return instance;
     }
 
+    //Getters
     public String getUsername(){
         return nutzer.getBenutzerName();
     }
@@ -72,6 +74,7 @@ public class Data extends Application{
         return gruppen;
     }
 
+    //adders and setters
     public void addGruppe (Gruppe g){
         gruppen.add(g);
     }
@@ -118,7 +121,9 @@ public class Data extends Application{
         return names;
     }
 
-    public void checkForMonthlyPayments(){
+    //If Bills are repetative (Dayly,Weekly,Monthly,Yearly) this will be calculated on app startup!
+    //If a Bill hits the date, it will create a new bill with the same loop
+    public void checkForRepetedPayments(){
         if(gruppen==null)return;
         for(Gruppe g:gruppen){
             if(g.getBills()==null)return;
@@ -177,6 +182,8 @@ public class Data extends Application{
         }
     }
 
+    //Read file for JSON data
+    //If no file is found, defaultdata will be used
     public void readFile(Activity caller){
         if(gruppen == null) gruppen = new ArrayList<Gruppe>();
         try {
@@ -186,12 +193,15 @@ public class Data extends Application{
             byte[] buff = new byte[jsonLength];
             is.read(buff);
             is.close();
-            String wholeJSON = new String(buff, "UTF-8");       //Liest alle Gruppen, erste Gruppe ist Profil
+            //read the whole file into json object
+            String wholeJSON = new String(buff, "UTF-8");
             JSONObject myJSONObject = new JSONObject(wholeJSON);
+
+
+            //read userdata
             nutzer = new Profil();
             nutzer.setBenutzerName(myJSONObject.getString("user"));
             nutzer.setLimit(myJSONObject.getDouble("limit"));
-
             JSONArray profBills = myJSONObject.getJSONArray("bills");
             for(int j=0; j<profBills.length(); j++) {
                 JSONObject bill = profBills.getJSONObject(j);
@@ -212,9 +222,10 @@ public class Data extends Application{
                 z.setPaydate(d);
                 nutzer.addAusgabe(z);
             }
-
+            //read groupdata
+            //add one element to the arraylist per element.
             JSONArray myJSONArray = myJSONObject.getJSONArray("group_data");
-            for(int i=0; i< myJSONArray.length(); i++){                     //Pro Gruppe ein Gruppenobjekt in eine Arraylist schreiben.
+            for(int i=0; i< myJSONArray.length(); i++){
                 JSONObject obj = myJSONArray.getJSONObject(i);
                 Gruppe grp = new Gruppe();
                 grp.setName(obj.getString("name"));
@@ -241,6 +252,7 @@ public class Data extends Application{
                     }
                     z.setPayed(names);
 
+                    //Get date
                     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                     Date d = format.parse(bill.getString("payedOn"));
                     Calendar cal = Calendar.getInstance();
@@ -255,16 +267,19 @@ public class Data extends Application{
                 }
                 gruppen.add(grp);
             }
+
+            checkForRepetedPayments();
+
         }catch (Exception e){
             e.printStackTrace();
             Log.i("ERROR", e.getMessage());
+            //Create default User Data
+            nutzer = new Profil("username",1000);
         }
-        for (Gruppe g : gruppen){
-            //Log.i("GRUPPE", g.toString());
-        }
-        checkForMonthlyPayments();
+
     }
 
+    //save the data into the same file
     public void writeSaveFile(Activity caller){
         try{
             OutputStreamWriter myOutput = new OutputStreamWriter(caller.getApplicationContext().openFileOutput(filename,Context.MODE_PRIVATE));

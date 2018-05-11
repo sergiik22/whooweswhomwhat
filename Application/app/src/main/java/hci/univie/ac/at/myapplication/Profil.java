@@ -12,6 +12,7 @@ public class Profil {
     private ArrayList<Zahlung> ausgaben;
     private double limit;
 
+    //Constructor
     public Profil(){
         ausgaben = new ArrayList<Zahlung>();
     }
@@ -21,7 +22,7 @@ public class Profil {
         limit = amount;
         ausgaben = new ArrayList<Zahlung>();
     }
-
+    //Setter
     public void setBenutzerName(String name){
         benutzerName = name;
     }
@@ -31,7 +32,7 @@ public class Profil {
     public void setLimit(double newLimit){
         limit = newLimit;
     }
-
+    //Getter
     public String getBenutzerName(){
         return benutzerName;
     }
@@ -41,6 +42,7 @@ public class Profil {
     public ArrayList<Zahlung> getAusgaben(){
         return ausgaben;
     }
+
     @Override
     public String toString(){
         String s ="";

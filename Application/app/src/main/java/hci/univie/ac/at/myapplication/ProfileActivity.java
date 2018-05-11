@@ -57,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     if (z.getPayer().equals(memberName)) {
                         val += z.getPrice();
                     }
-                    val -= z.getPrice() / (double) totalMembers;
+                    if(z.getPayed().contains(memberName))val -= z.getPrice() / (double) totalMembers;
                 }
             }
             summ += val;
@@ -73,7 +73,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             tvks.setText(tempsumm);
         }
 
-        //Eigene Ausgabe
+        //Eigene Ausgaben
 
         bills = (TableLayout) findViewById(R.id.tbl_Ausgabe);
         bills.removeAllViews();
@@ -178,6 +178,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         }
     }
+    //Menue
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
