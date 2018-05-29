@@ -8,7 +8,6 @@
     tools:layout_editor_absoluteY="81dp">
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,17 +18,17 @@
 
         <ImageView
             android:id="@+id/profile_picture"
-            android:layout_width= "100dip"
+            android:layout_width="100dip"
             android:layout_height="100dip"
             android:layout_alignParentRight="true"
-            android:src="@drawable/im1"
             android:background="#000000"
             android:foregroundGravity="right"
             android:maxHeight="160dp"
             android:maxWidth="160px"
             android:minHeight="160px"
             android:minWidth="160px"
-            android:padding="5px" />
+            android:padding="5px"
+            android:src="@drawable/im1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,17 +127,17 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/ScrollView02"
                 android:layout_width="fill_parent"
-                android:layout_height="205dip"
-               >
+                android:layout_height="370dp">
 
                 <LinearLayout
                     android:id="@+id/my_groups"
                     android:layout_width="match_parent"
-                    android:layout_height="205dip"
-                    android:minHeight="300px"
+                    android:layout_height="match_parent"
+                    android:minHeight="200dp"
                     android:orientation="vertical">
 
 
@@ -157,13 +156,13 @@
         android:layout_marginBottom="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@drawable/button_color"
         android:text="Neue Gruppe"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/button_color"
-        android:textColor="@android:color/white"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
