@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Console;
 import java.io.File;
@@ -213,8 +214,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    mainData.setNewUsername(input.getText().toString());
-                    saveData();
+                 
+                        if (input.getText().toString().equals("")) {
+                            Toast.makeText(getApplicationContext(), "Name kann nicht leer sein",
+                                    Toast.LENGTH_LONG).show();
+                            tvun.performLongClick();
+                        }
+                        else
+                        {
+
+                        mainData.setNewUsername(input.getText().toString());
+                        saveData();
+                    }
+
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -239,8 +251,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mainData.setNewLimit(Double.parseDouble(input.getText().toString()));
-                        saveData();
+                        if (input.getText().toString().equals("")) {
+                            Toast.makeText(getApplicationContext(), "Limit kann nicht leer sein",
+                                    Toast.LENGTH_LONG).show();
+                            tvlt.performLongClick();
+                        }
+                            else
+                        {
+                            mainData.setNewLimit(Double.parseDouble(input.getText().toString()));
+                            saveData();
+                        }
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
