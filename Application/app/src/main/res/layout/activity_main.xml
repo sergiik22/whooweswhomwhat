@@ -28,7 +28,7 @@
             android:minHeight="160px"
             android:minWidth="160px"
             android:padding="5px"
-            android:src="@drawable/im1" />
+            android:src="@drawable/im2" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,41 +128,49 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/ScrollView02"
-                android:layout_width="fill_parent"
-                android:layout_height="370dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-                <LinearLayout
-                    android:id="@+id/my_groups"
+                tools:layout_editor_absoluteY="248dp">
+
+                <ScrollView
+                    android:id="@+id/ScrollView02"
+                    android:layout_width="fill_parent"
+                    android:layout_marginBottom="55dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/my_groups"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minHeight="200dp"
+                        android:orientation="vertical">
+
+
+
+                    </LinearLayout>
+                </ScrollView>
+                <Button
+                    android:id="@+id/new_group_button"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:minHeight="200dp"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_color"
+                    android:text="Neue Gruppe"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@android:color/white"
 
-
-                </LinearLayout>
-            </ScrollView>
+                    android:layout_gravity="bottom"
+                     />
+            </RelativeLayout>
 
         </LinearLayout>
 
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/new_group_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/button_color"
-        android:text="Neue Gruppe"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

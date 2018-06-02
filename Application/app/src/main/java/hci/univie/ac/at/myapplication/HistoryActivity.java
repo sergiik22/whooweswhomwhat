@@ -1,7 +1,10 @@
 package hci.univie.ac.at.myapplication;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.MenuItem;
@@ -16,7 +19,7 @@ import java.util.Date;
  * Created by Benne on 01.05.2018.
  */
 
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity implements View.OnLongClickListener {
 
     TableLayout bills;
     TableRow tmrow1;
@@ -95,6 +98,7 @@ public class HistoryActivity extends AppCompatActivity {
 
             tmrow1 = new TableRow(this);
             Button btn = new Button (this);
+            btn.setOnLongClickListener(this);
             Button btn1 = new Button (this);
             Button btn2 = new Button (this);
             Button btn3 = new Button (this);
@@ -150,6 +154,59 @@ public class HistoryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         if(id==android.R.id.home) this.finish();
-        return super.onOptionsItemSelected(item);
+        Intent intent1 = new Intent(this, SelectedGroupActivity.class);
+
+        startActivity(intent1);
+        return true;
+    }
+
+    /**
+     * Called when a view has been clicked and held.
+     *
+     * @param v The view that was clicked and held.
+     * @return true if the callback consumed the long click, false otherwise.
+     */
+    @Override
+    //Löschen
+    //Speichern von Zahlungen
+    public boolean onLongClick(View v) {
+        final String temp_name = ((Button) v).getText().toString();
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(HistoryActivity.this);
+        mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
+        mBuilder.setTitle("Zahlung loeschen");
+        mBuilder.setMessage("Möchten Sie wirklich Zahlung loeschen?");
+
+        mBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (int i = 0; i < MainActivity.mainGruppe.getBills().size(); ++i) {
+                    if (MainActivity.mainGruppe.getBills().get(i).getDescription().equals(temp_name)) {
+                        MainActivity.mainGruppe.getBills().remove(i);
+                        saveData();
+                    }
+
+                }
+            }
+        });
+
+        mBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog aldialog = mBuilder.create();
+        aldialog.show();
+
+        return false;
+    }
+    //Speichern und Reload Activity
+    public void saveData(){
+        Data.getInstance().writeSaveFile(this);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+
     }
 }

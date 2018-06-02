@@ -1,27 +1,32 @@
 package hci.univie.ac.at.myapplication;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.io.Console;
 import java.io.File;
 import java.util.ArrayList;
 
 import static android.widget.Button.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
+public class MainActivity extends AppCompatActivity implements OnClickListener, OnLongClickListener {
     //Static variables to use in all Activities
 
     private static Data mainData = null;
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView tvun;
     TextView tvlt;
     TextView tvks;
+
 
     //Mainscreen
     @Override
@@ -53,12 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         tvun = (TextView)findViewById(R.id.tvShowUNM);
+        tvun.setOnLongClickListener(this);
         tvlt = (TextView)findViewById(R.id.tvShowLTM);
+        tvlt.setOnLongClickListener(this);
         tvks = (TextView)findViewById(R.id.tvShowKSM);
         tvun.setTextColor(Color.rgb(26, 117, 255));
-        tvlt.setTextColor(Color.rgb(26, 117, 255));
         tvun.setText(mainData.getUsername().toString());
-        tvlt.setText(String.valueOf(mainData.getLimit()));
+
 
         double summ = 0;
 
@@ -107,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             btn.setOnClickListener((View.OnClickListener) this);
+            btn.setOnLongClickListener(this);
             myLayout.addView(btn, myParams);
         }
 
@@ -117,13 +125,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             tvks.setTextColor(Color.rgb(37, 142, 37));
             tvks.setText(tempsumm);
+            tvlt.setTextColor(Color.rgb(37, 142, 37));
+            tvlt.setText(String.format("%.2f",mainData.getLimit()));
         }else{
 
             tvks.setTextColor(Color.rgb(255, 0, 0));
             tvks.setText(tempsumm);
+            if (summ * (-1) > mainData.getLimit()){
+                tvlt.setTextColor(Color.rgb(255, 0, 0));
+                tvlt.setText(String.format("%.2f",mainData.getLimit()));
+            }
+            else {
+                tvlt.setTextColor(Color.rgb(37, 142, 37));
+                tvlt.setText(String.format("%.2f",mainData.getLimit()));
+            }
         }
 
         btn_group.setOnClickListener(this);
+
     }
 
     //Menue
@@ -171,5 +190,112 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             startActivity(intent);
         }
+    }
+
+    /**
+     * Called when a view has been clicked and held.
+     *
+     * @param v The view that was clicked and held.
+     * @return true if the callback consumed the long click, false otherwise.
+     */
+    @Override
+    //Löschen von Gruppen
+    public boolean onLongClick(View v) {
+
+        int tempid = v.getId();
+        if (tempid == R.id.tvShowUNM) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Username aendern ");
+            final EditText input = new EditText(this);
+            builder.setView(input);
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    mainData.setNewUsername(input.getText().toString());
+                    saveData();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            builder.show();
+        }
+
+        else if (tempid == R.id.tvShowLTM){
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Limit aendern ");
+                final EditText input = new EditText(this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                builder.setView(input);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mainData.setNewLimit(Double.parseDouble(input.getText().toString()));
+                        saveData();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
+
+        else {
+
+            final Intent intent = new Intent(this, MainActivity.class);
+            String temp_string = ((Button) v).getText().toString();
+            final String[] btnName = temp_string.split(":");
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
+            mBuilder.setTitle("Gruppe loeschen");
+            mBuilder.setMessage("Möchten Sie wirklich die Gruppe \"" + btnName[0] + "\" loeschen?");
+            final boolean[] flag = {false};
+
+            mBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    for (int i = 0; i < mainData.getGruppeArray().size(); ++i) {
+                        if (mainData.getGruppeArray().get(i).getName().equals(btnName[0])) {
+                            mainData.getGruppeArray().remove(i);
+                            saveData();
+                        }
+                    }
+
+
+                }
+            });
+            mBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog aldialog = mBuilder.create();
+            aldialog.show();
+        }
+        return false;
+    }
+    //Speichern und reload Activity
+    public void saveData(){
+        mainData.writeSaveFile(this);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+
+
     }
 }

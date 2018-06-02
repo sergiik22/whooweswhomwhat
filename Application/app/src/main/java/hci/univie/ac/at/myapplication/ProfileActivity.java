@@ -1,8 +1,11 @@
 package hci.univie.ac.at.myapplication;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.Menu;
@@ -20,7 +23,7 @@ import java.util.Date;
  * Created by Benne on 01.05.2018.
  */
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
     TextView tvun;
     TextView tvlt;
     TextView tvks;
@@ -67,10 +70,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             tvks.setTextColor(Color.rgb(37, 142, 37));
             tvks.setText(tempsumm);
+            tvlt.setTextColor(Color.rgb(37, 142, 37));
+            tvlt.setText(String.format("%.2f", Data.getInstance().getLimit()));
         } else {
 
             tvks.setTextColor(Color.rgb(255, 0, 0));
             tvks.setText(tempsumm);
+            if (summ * (-1) > Data.getInstance().getLimit()){
+                tvlt.setTextColor(Color.rgb(255, 0, 0));
+                tvlt.setText(String.format("%.2f",Data.getInstance().getLimit()));
+            }
+            else {
+                tvlt.setTextColor(Color.rgb(37, 142, 37));
+                tvlt.setText(String.format("%.2f",Data.getInstance().getLimit()));
+            }
         }
 
         //Eigene Ausgaben
@@ -96,13 +109,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
                 btn.setText("Beschreibung");
                 btn.setBackgroundColor(Color.WHITE);
-                btn.setTextColor(Color.RED);
+                btn.setTextColor(Color.BLACK);
+                btn.setTypeface(Typeface.DEFAULT_BOLD);
                 btn.setTextSize(12);
                 btn.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
                 btn1.setText("Summe");
                 btn1.setBackgroundColor(Color.WHITE);
-                btn1.setTextColor(Color.RED);
+                btn1.setTextColor(Color.BLACK);
+                btn1.setTypeface(Typeface.DEFAULT_BOLD);
                 btn1.setTextSize(12);
                 btn1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
@@ -110,7 +125,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 btn3.setText("Datum");
                 btn3.setBackgroundColor(Color.WHITE);
                 btn3.setTextSize(12);
-                btn3.setTextColor(Color.RED);
+                btn3.setTextColor(Color.BLACK);
+                btn3.setTypeface(Typeface.DEFAULT_BOLD);
                 btn3.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
                 tmrow1.setId(i + 1);
@@ -141,8 +157,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             btn.setBackgroundColor(Color.WHITE);
             btn.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             btn.setTextSize(12);
+            btn.setOnLongClickListener(this);
 
-            btn1.setText(String.valueOf(Data.getInstance().getNutzer().getAusgaben().get(i).getPrice()));
+            btn1.setText (String.format("%.2f", Data.getInstance().getNutzer().getAusgaben().get(i).getPrice()));
             btn1.setBackgroundColor(Color.WHITE);
             btn1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             btn1.setTextSize(12);
@@ -217,5 +234,51 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent1 = new Intent(this, EintragProfilActivity.class);
         intent1.putExtra("Uniqid","From_Profile_Activity");
         startActivity(intent1);
+    }
+
+    /**
+     * Called when a view has been clicked and held.
+     *
+     * @param v The view that was clicked and held.
+     * @return true if the callback consumed the long click, false otherwise.
+     */
+    @Override
+    public boolean onLongClick(View v) {
+        final String temp_name = ((Button) v).getText().toString();
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(ProfileActivity.this);
+        mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
+        mBuilder.setTitle("Zahlung loeschen");
+        mBuilder.setMessage("Möchten Sie wirklich Zahlung loeschen?");
+
+        mBuilder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (int i = 0; i < Data.getInstance().getNutzer().getAusgaben().size(); ++i) {
+                    if (Data.getInstance().getNutzer().getAusgaben().get(i).getDescription().equals(temp_name)) {
+                        Data.getInstance().getNutzer().getAusgaben().remove(i);
+                        saveData();
+                    }
+
+                }
+            }
+        });
+
+        mBuilder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog aldialog = mBuilder.create();
+        aldialog.show();
+        return false;
+    }
+    public void saveData(){
+        Data.getInstance().writeSaveFile(this);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+
     }
 }

@@ -27,7 +27,7 @@
             android:padding="5px"
             android:layout_marginTop="30px"
             android:layout_marginRight="30px"
-            android:src="@drawable/im1" />
+            android:src="@drawable/im2" />
 
         <TextView
             android:id="@+id/tvUserName"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tvUserName"
             android:layout_below="@+id/tvUserName"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="20dp"
             android:text="Limit"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -81,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/tvLimit"
             android:layout_alignBottom="@+id/tvLimit"
-            android:layout_centerHorizontal="true"
+            android:layout_centerHorizontal="false"
+            android:layout_marginStart="117dp"
             android:text="ssss"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -113,7 +114,8 @@
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/ScrollView02"
             android:layout_width="fill_parent"
-            android:layout_height="250dip"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="55dp"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/tvAusgabe"
             android:layout_marginTop="14dp">

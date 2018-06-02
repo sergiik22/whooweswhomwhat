@@ -174,7 +174,6 @@ public class NewGroupActivity extends AppCompatActivity implements View.OnClickL
             }
             //Add
             else {
-                //Mistake, probably to use on resume in ActivityMain
 
                 Gruppe grnew = new Gruppe(getname1, names);
                 data.addGruppe(grnew);

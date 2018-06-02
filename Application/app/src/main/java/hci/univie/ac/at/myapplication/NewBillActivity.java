@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -113,6 +114,13 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
         String getbeschreibung = et1.getText().toString();
         String getbetrag = et2.getText().toString();
         int tempid = v.getId();
+        boolean flag = false;
+        for (int i = 0; i < MainActivity.mainGruppe.getBills().size(); ++i){
+            if (MainActivity.mainGruppe.getBills().get(i).getDescription().equals(getbeschreibung))
+            {
+                flag = true;
+            }
+        }
         if (tempid == btn_create.getId()) {
 
             //Error
@@ -134,6 +142,20 @@ public class NewBillActivity extends AppCompatActivity implements View.OnClickLi
                 mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
                 mBuilder.setTitle("Falsche Betrag");
                 mBuilder.setMessage("Betrag kann nicht leer sein!");
+                mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog aldialog = mBuilder.create();
+                aldialog.show();
+            }
+            else if (flag){
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(NewBillActivity.this);
+                mBuilder.setIcon(android.R.drawable.sym_def_app_icon);
+                mBuilder.setTitle("Falsche Beschreibung");
+                mBuilder.setMessage("Die Beschreibung gibt es schon!");
                 mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
